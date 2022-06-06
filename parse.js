@@ -6,6 +6,7 @@ import blackList from './blackListedWords.js';
 const pdfParser = new PDFParser(this, 1);
 
 pdfParser.on('pdfParser_dataError', (errData) => console.error(errData.parserError));
+
 pdfParser.on('pdfParser_dataReady', (pdfData) => {
   const rawTXT = pdfParser.getRawTextContent();
   fs.writeFileSync('./parsed/raw.txt', rawTXT);
@@ -38,7 +39,6 @@ pdfParser.on('pdfParser_dataReady', (pdfData) => {
 
   const firstHundred = filtered.slice(0, 99);
 
-  console.log(firstHundred);
   fs.writeFileSync('./parsed/wordCloud.txt', JSON.stringify(firstHundred));
 });
 
